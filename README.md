@@ -1,5 +1,7 @@
 # OCR japanese translator overlay
 
+Wonky OCR japanese translator overlay, mainly made for Blue Protocol.
+
 ## Development
 
 For development, you will need Tesseract. Get it here: https://github.com/tesseract-ocr/tesseract
