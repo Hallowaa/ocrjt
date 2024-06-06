@@ -18,7 +18,7 @@ except Exception as e:
     print("Could not set DPI awareness:", e)
 
 # Regular expression to match Japanese characters
-japanese_pattern = re.compile(r'[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF\u3000-\u303F]+')
+japanese_pattern = re.compile(r'[\u3040-\u3096\u30A0-\u30FF\u3400-\u4DB5\u4E00-\u9FCB\uF900-\uFA6A]+')
 padding = 5
 
 def extract_text_with_positions():
@@ -93,7 +93,7 @@ def update_overlay(data):
     rows = sort_text_segments_into_rows(segments)
     #for segment in segments:
     #    label = Label(overlay, text="", bg="yellow", font=("Arial", 12, "bold"), padx=padding, pady=padding)
-    #    label.place(x=segment['x']-padding, y=segment['y']-padding, width=segment['w']+2*padding, height=segment['h']+2*padding)
+    #    label.place(x=segment['x'], y=segment['y']-27, width=segment['w']+2*padding, height=segment['h']+2*padding)
 
     for row in rows:
       for sentence in find_sentences_in_row(row):
@@ -106,7 +106,7 @@ def update_overlay(data):
         for c in range(len(sentence)):
             w += sentence[c]['w']
         # -25 on y to compensate for top bar
-        label.place(x=sentence[0]['x']-padding, y=sentence[0]['y']-padding-25, width=w+2*padding, height=sentence[0]['h']+2*padding)          
+        label.place(x=sentence[0]['x'], y=sentence[0]['y']-27, width=w+2*padding, height=max(sentence, key=lambda x: x['h'])['h']+2*padding)          
 
 overlay = tk.Tk()
 overlay.attributes("-topmost", True)
